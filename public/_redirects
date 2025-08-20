@@ -1,0 +1,2 @@
+# Forcer sans-www (ou inverse si tu préfères www)
+https://www.raynald-art.com/*  https://raynald-art.com/:splat  301!
