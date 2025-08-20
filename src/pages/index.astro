@@ -1,14 +1,116 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
-const myVar = 1;
+// This is a minimal Astro homepage for Raynald Art.
 ---
 
-<Layout>
-	<Welcome />
-	test {myVar}
-</Layout>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raynald&nbsp;| Illustration et Concept&nbsp;Art</title>
+  </head>
+  <body>
+    <header class="container">
+      <div class="branding">
+        <h1>RAYNALD</h1>
+        <p>Illustration&nbsp;|&nbsp;Concept&nbsp;Art</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/portfolio">Portfolio</a></li>
+          <li><a href="/mentorat">Mentorat</a></li>
+          <li><a href="/a-propos">À&nbsp;propos</a></li>
+          <!-- Ajoutez ici des liens vers vos réseaux sociaux et votre mail -->
+          <li><a href="mailto:contact@raynald-art.com">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <!-- Image d’illustration des trois portraits. Mettez le fichier hero_row.png dans votre dossier 'public' -->
+        <img src="/hero_row.png" alt="Illustrations de Raynald" loading="lazy" />
+      </section>
+    </main>
+  </body>
+
+  <style>
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      color: #111;
+      background-color: #fff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 3rem;
+    }
+
+    .branding h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .branding p {
+      margin: 0.25rem 0 0;
+      font-size: 1rem;
+      color: #666;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: inherit;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+    }
+  </style>
+</html>
