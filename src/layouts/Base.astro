@@ -1,0 +1,23 @@
+---
+const {
+  title = "Raynald | Illustration & Concept Art",
+  description = "Portfolio d’illustration et de concept art par Raynald.",
+} = Astro.props;
+---
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- CSS global -->
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <!-- Open Graph (SEO) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
