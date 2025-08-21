@@ -152,7 +152,7 @@ nav a:hover::after { width: 100%; }
   .menu-dropdown:hover .submenu { display: block; }
 }
 
-/* Mobile : empile proprement */
+/* Mobile : empile proprement  */
 @media (max-width: 768px) {
   .nav-list { gap: 1rem; flex-wrap: wrap; }
   .submenu {
