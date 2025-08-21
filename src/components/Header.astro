@@ -1,20 +1,34 @@
 <header class="site-header">
   <div class="branding">
-    <h1 class="brand-title">
-      <a href="/" class="brand-link">RAYNALD</a>
-    </h1>
+    <h1 class="brand-title"><a href="/" class="brand-link">RAYNALD</a></h1>
     <p>Illustration&nbsp;|&nbsp;Concept&nbsp;Art</p>
   </div>
 
   <nav aria-label="Navigation principale">
-    <ul>
-      <li><a href="/portfolio">Portfolio</a></li>
-      <li><a href="/mentorat">Mentorat</a></li>
-      <li><a href="/about">À&nbsp;propos</a></li>
-      <li><a href="mailto:contact@raynald-art.com">Contact</a></li>
+    <ul class="nav-list">
+      <!-- Sous-menu Portfolio -->
+      <li class="nav-item">
+        <details class="menu-dropdown">
+          <summary class="menu-summary">
+            Portfolio
+            <span aria-hidden="true" class="caret">▾</span>
+          </summary>
+          <ul class="submenu">
+            <li><a href="/portfolio/illustrations">Illustrations</a></li>
+            <li><a href="/portfolio/portraits">Portraits</a></li>
+            <li><a href="/portfolio/character-design">Character design</a></li>
+            <li><a href="/portfolio/croquis">Croquis</a></li>
+          </ul>
+        </details>
+      </li>
+
+      <li class="nav-item"><a href="/mentorat">Mentorat</a></li>
+      <li class="nav-item"><a href="/about">À&nbsp;propos</a></li>
+      <li class="nav-item"><a href="mailto:contact@raynald-art.com">Contact</a></li>
     </ul>
   </nav>
 </header>
+
 
 <style>
   .brand-link {
@@ -22,6 +36,6 @@
     color: inherit;
   }
   .brand-link:hover {
-    text-decoration:none;
+    text-decoration: none;
   }
 </style>

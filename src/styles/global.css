@@ -91,3 +91,75 @@ nav a:hover::after { width: 100%; }
   }
   nav ul { flex-wrap: wrap; gap: 1rem; }
 }
+
+/* Nav list base */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+.nav-item a { text-decoration: none; color: inherit; font-weight: 500; }
+
+/* Dropdown (details/summary) */
+.menu-dropdown {
+  position: relative;
+}
+.menu-summary {
+  list-style: none;          /* retire le triangle par défaut */
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.menu-summary::-webkit-details-marker { display: none; } /* Safari/Chrome */
+.caret { font-size: .9em; transform: translateY(-1px); }
+
+/* Sous-menu */
+.submenu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  left: 0;
+  min-width: 220px;
+  padding: .5rem 0;
+  margin: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: .5rem;
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+  display: none;
+  z-index: 10;
+}
+.submenu a {
+  display: block;
+  padding: .6rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  white-space: nowrap;
+}
+.submenu a:hover { background: #f7f7f7; }
+
+/* Ouvrir/fermer sans JS */
+.menu-dropdown[open] .submenu { display: block; }
+
+/* Hover/focus desktop en plus (optionnel) */
+@media (pointer:fine) {
+  .menu-dropdown:hover .submenu { display: block; }
+}
+
+/* Mobile : empile proprement */
+@media (max-width: 768px) {
+  .nav-list { gap: 1rem; flex-wrap: wrap; }
+  .submenu {
+    position: static;
+    box-shadow: none;
+    border: 1px solid #f0f0f0;
+    margin-top: .5rem;
+    border-radius: .4rem;
+  }
+}
