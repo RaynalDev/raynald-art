@@ -1,0 +1,215 @@
+---
+interface Img {
+  src: string;
+  alt: string;
+  w?: number;
+  h?: number;
+}
+const { images = [] as Img[] } = Astro.props;
+---
+
+<section class="gallery" aria-label="Galerie d’illustrations">
+  {images.map((img: Img, i: number) => (
+    <button
+      type="button"
+      class="thumb"
+      data-index={i}
+      style={`--i:${i};`}
+      aria-label={`Voir l’illustration en grand : ${img.alt}`}
+    >
+      <img
+        src={img.src}
+        alt={img.alt}
+        loading="lazy"
+        width={img.w ?? 800}
+        height={img.h ?? 600}
+      />
+    </button>
+  ))}
+</section>
+
+<!-- Lightbox -->
+<dialog class="lightbox" id="lightbox" aria-label="Aperçu de l’illustration">
+  <button class="close" aria-label="Fermer">×</button>
+  <button class="prev" aria-label="Illustration précédente">‹</button>
+  <figure class="stage">
+    <img id="lb-img" alt="" />
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+  <button class="next" aria-label="Illustration suivante">›</button>
+</dialog>
+
+<style>
+  /* Grille */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 1.5rem auto 3rem;
+    padding: 0 1rem;
+  }
+  .thumb {
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: zoom-in;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    /* état initial (révélations au scroll) */
+    opacity: 0;
+    transform: translateY(16px) scale(.98);
+    transition: opacity .5s ease, transform .5s ease;
+    transition-delay: calc((var(--i, 0) % 12) * 40ms); /* léger décalage */
+  }
+  .thumb.in { opacity: 1; transform: none; }
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .thumb:hover img { filter: saturate(1.05) contrast(1.02); }
+
+  /* Lightbox */
+  .lightbox {
+    border: none;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+  }
+  .lightbox::backdrop { background: rgba(0,0,0,.35); }
+  .stage {
+    margin: 0;
+    position: absolute;
+    inset: 48px 72px;
+    display: grid;
+    place-items: center;
+  }
+  #lb-img {
+    max-width: min(92vw, 1400px);
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    border-radius: 12px;
+    background: #fff;
+  }
+  #lb-cap {
+    margin-top: .75rem;
+    color: #eee;
+    text-align: center;
+  }
+  .close, .prev, .next {
+    position: absolute;
+    top: 16px;
+    z-index: 2;
+    border: 0;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: grid; place-items: center;
+    font-size: 22px; line-height: 1;
+  }
+  .close { right: 16px; }
+  .prev, .next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    width: 48px; height: 48px;
+  }
+  .prev { left: 16px; }
+  .next { right: 16px; }
+  .close:hover, .prev:hover, .next:hover { background: rgba(0,0,0,.75); }
+
+  @media (max-width: 720px) {
+    .stage { inset: 56px 12px 24px; }
+    .prev, .next { top: auto; bottom: 14px; transform: none; }
+    .prev { left: 12px; }
+    .next { right: 12px; }
+  }
+</style>
+
+<script>
+import { undefined } from "astro:schema";
+
+  // Stagger reveal au scroll (IntersectionObserver)
+  const thumbs = Array.from(document.querySelectorAll('.thumb'));
+
+function revealInitial() {
+  thumbs.forEach((t) => {
+    const r = t.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) t.classList.add('in');
+  });
+}
+revealInitial();
+window.addEventListener('load', revealInitial);
+window.addEventListener('resize', revealInitial);
+
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { rootMargin: '0px 0px 0px 0px', threshold: 0.1 });
+  thumbs.forEach(t => io.observe(t));
+
+  // Lightbox
+  const images = (/** @type {HTMLImageElement[]} */(thumbs.map(t => t.querySelector('img'))));
+  
+ const dialog = document.querySelector<HTMLDialogElement>('#lightbox')!;
+  const lbImg  = dialog.querySelector<HTMLImageElement>('#lb-img')!;
+  const lbCap  = dialog.querySelector<HTMLParagraphElement>('#lb-cap')!;
+  const btnPrev = dialog.querySelector<HTMLButtonElement>('.prev')!;
+  const btnNext = dialog.querySelector<HTMLButtonElement>('.next')!;
+  const btnClose = dialog.querySelector<HTMLButtonElement>('.close')!;
+
+  let i = 0;
+  function show(idx: number) {
+    i = (idx + images.length) % images.length;
+    const im = images[i];
+    if(lbImg){
+      lbImg.src = im?.src || '' ;
+      lbImg.alt = im?.alt || '';
+      
+    }
+    if(lbCap)
+    lbCap.textContent = im?.alt || '';
+  }
+  function open(idx: number) {
+    show(idx);
+    if (typeof dialog?.showModal === 'function') dialog?.showModal();
+    else dialog?.setAttribute('open','');
+    document.documentElement.style.overflow = 'hidden'; // lock scroll
+  }
+  function close() {
+    if (typeof dialog?.close === 'function') dialog?.close();
+    else dialog?.removeAttribute('open');
+    document.documentElement.style.overflow = '';
+  }
+
+  thumbs.forEach((t, idx) => {
+    t.addEventListener('click', () => open(idx));
+  });
+  btnPrev?.addEventListener('click', () => show(i - 1));
+  btnNext?.addEventListener('click', () => show(i + 1));
+  btnClose?.addEventListener('click', close);
+  dialog?.addEventListener('click', (e: MouseEvent) => {
+    // fermer si clic en dehors du stage
+    const stage = dialog.querySelector<HTMLElement>('.stage');
+
+    if(!stage) return;
+
+    const r: DOMRect = stage.getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (!inside) close();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (!dialog?.open) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
+  });
+</script>
