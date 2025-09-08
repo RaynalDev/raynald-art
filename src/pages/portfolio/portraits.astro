@@ -2,12 +2,20 @@
 import Base from "../../layouts/Base.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
+import Gallery from "../../components/Gallery.astro";
+
+// Liste des images de portraits (mets-les dans /public/images/portraits/)
+const images = [
+  { src: "/images/illustrations/Black.png", alt: "Black / description 01" },
+  { src: "/images/illustrations/Red.png", alt: "Titre / description 04" },
+  { src: "/images/illustrations/thugLife.png", alt: "Titre / description 05" },
+];
 ---
 <Base title="Portraits | Raynald">
   <Header />
   <main>
-    <h2>Portraits</h2>
-    <p>Galerie à venir.</p>
+    <!-- <h2 style="max-width:1200px;margin:1rem auto;padding:0 1rem;">Portraits</h2> -->
+    <Gallery images={images} />
   </main>
   <Footer />
 </Base>
