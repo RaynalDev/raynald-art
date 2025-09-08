@@ -2,12 +2,109 @@
 import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+const title   = "À propos | Raynald";
+const mail    = "raynald.monta@gmail.com";
+const imgSrc  = "/images/about/self_portrait.jpg"; // ← ta photo
+const imgAlt  = "Raynald dessinant à son bureau.";
 ---
-<Base title="À propos | Raynald">
+
+<Base title={title} description="À propos de Raynald — illustrateur & concept-artist.">
   <Header />
-  <main>
-    <h2>À propos</h2>
-    <p>Quelques mots sur mon parcours et ma démarche artistique seront bientôt disponibles ici.</p>
+  <main class="about">
+    <section class="wrapper">
+      <div class="panel">
+        <p><strong>Je m’appelle Raynald MONTA,</strong><br/>je suis illustrateur.</p>
+
+        <p>
+          Ne vous fiez pas à cette crinière récalcitrante, juste en dessous
+          c’est une personne très ouverte qui sera ravie de répondre à vos
+          questions et d’échanger avec vous sur des projets potentiels.
+        </p>
+
+        <p>
+          N’hésitez pas à m’envoyer un mail à :<br/>
+          <a class="mail" href={`mailto:${mail}`}>{mail}</a>
+        </p>
+      </div>
+
+      <figure class="portrait">
+        <img src={imgSrc} alt={imgAlt} width="1200" height="1600" loading="eager" decoding="async" />
+      </figure>
+    </section>
   </main>
   <Footer />
 </Base>
+
+<style>
+  .about {
+    padding-block: 2rem 3rem;
+  }
+
+.wrapper {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr; /* texte / image */
+  align-items: start;
+  position: relative; /* nécessaire pour gérer les chevauchements */
+}
+
+.panel {
+  background: #e9e9e9;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 1px 0 rgba(0,0,0,.04) inset;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.6;
+
+  position: relative;
+  z-index: 2;          /* au-dessus de la photo */
+  margin-top: 3rem;    /* décale un peu vers le bas */
+  margin-right: -4rem; /* chevauche la photo */
+}
+  .panel p { margin: 0 0 1.1rem; }
+  .panel strong { font-weight: 700; }
+  .panel .mail {
+    font-weight: 700;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+  }
+  .panel .mail:hover { opacity: .85; }
+
+  /* Photo */
+  .portrait {
+    margin: 0;
+    position: relative;
+  }
+  .portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    filter: grayscale(100%); /* comme sur ta capture */
+  }
+
+  /* Responsive */
+  /* @media (max-width: 980px) {
+    .wrapper {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .panel { order: 1; }
+    .portrait { order: 2; }
+  } */
+  @media (max-width: 980px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .panel {
+    margin: 0;         /* pas de chevauchement en mobile */
+    order: 1;
+  }
+  .portrait { order: 2; }
+}
+</style>
