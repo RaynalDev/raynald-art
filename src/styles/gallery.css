@@ -1,0 +1,109 @@
+
+  /* Grille */
+  .gallery{
+  max-width: 1200px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+
+  /* Masonry “columns” */
+  column-width: 320px;      /* largeur cible d’une colonne */
+  column-gap: 16px;         /* marge constante entre colonnes */
+}
+  /* Chaque vignette devient un “bloc” qui évite de se couper entre colonnes */
+.thumb{
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;         /* gouttière verticale régulière */
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+  border: 0;
+  background: transparent;
+  outline: none;
+
+  /* Apparition smooth (plus rapide) */
+  opacity: 0;
+  transform: translateY(8px) scale(.995);
+  transition: opacity .35s ease, transform .35s ease;
+
+  /* Perf : ne peindre que quand visible + taille intrinsèque pour limiter le CLS */
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 300px;   /* valeur moyenne, ajuste si besoin */
+}
+.thumb.in{ opacity: 1; transform: none; }
+
+.thumb img{
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-transform: translateZ(0); /* micro-astuce de perf */
+}
+  .thumb:hover img { filter: saturate(1.05) contrast(1.02); }
+
+  /* Lightbox */
+  .lightbox {
+    border: none;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+  }
+  .lightbox::backdrop { background: rgba(0,0,0,.35); }
+  .stage {
+    margin: 0;
+    position: absolute;
+    inset: 48px 72px;
+    display: grid;
+    place-items: center;
+  }
+  #lb-img {
+    max-width: min(92vw, 1400px);
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    border-radius: 12px;
+    background: #fff;
+  }
+  #lb-cap {
+    margin-top: .75rem;
+    color: #eee;
+    text-align: center;
+  }
+  .close, .prev, .next {
+    position: absolute;
+    top: 16px;
+    z-index: 2;
+    border: 0;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    cursor: pointer;
+    display: grid; place-items: center;
+    font-size: 22px; line-height: 1;
+  }
+  .close { right: 16px; }
+  .prev, .next {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    width: 48px; height: 48px;
+  }
+  .prev { left: 16px; }
+  .next { right: 16px; }
+  .close:hover, .prev:hover, .next:hover { background: rgba(0,0,0,.75); }
+
+  @media (max-width: 720px) {
+    .stage { inset: 56px 12px 24px; }
+    .prev, .next { top: auto; bottom: 14px; transform: none; }
+    .prev { left: 12px; }
+    .next { right: 12px; }
+  }
+
+  /* Responsive: la largeur de colonne s’adapte déjà ; on peut affiner le gap si tu veux */
+@media (max-width: 640px){
+  .gallery{ column-gap: 12px; }
+  .thumb{ margin-bottom: 12px; }
+}
