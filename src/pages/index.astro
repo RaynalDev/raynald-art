@@ -3,8 +3,35 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
+
+const description =
+  "Illustrateur et concept artist freelance à Paris, Raynald crée des visuels sur mesure pour l’édition, la musique et le divertissement.";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Raynald Monta",
+  url: "https://raynald-art.com/",
+  jobTitle: "Illustrateur & Concept Artist",
+  image: "https://raynald-art.com/hero_row.png",
+  sameAs: [
+    "https://www.instagram.com/raynald_art",
+    "https://www.artstation.com/raynald"
+  ],
+  makesOffer: {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "CreativeWork",
+      description: "Illustrations, concept art et character design pour des projets éditoriaux et de divertissement."
+    }
+  }
+};
 ---
-<Base>
+<Base
+  title="Raynald Monta | Illustration & Concept Art"
+  description={description}
+  structuredData={structuredData}
+>
   <Header />
   <main>
     <Hero />

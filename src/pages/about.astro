@@ -3,13 +3,32 @@ import Base from "../layouts/Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const title   = "À propos | Raynald";
-const mail    = "raynald.monta@gmail.com";
-const imgSrc  = "/images/about/self_portrait.jpg"; // ← ta photo
-const imgAlt  = "Raynald dessinant à son bureau.";
+const title = "À propos | Raynald";
+const mail = "raynald.monta@gmail.com";
+const imgSrc = "/images/about/self_portrait.jpg"; // ← ta photo
+const imgAlt = "Raynald dessinant à son bureau.";
+const description =
+  "Rencontrez Raynald Monta, illustrateur freelance basé en France, spécialisé en digital painting et concept art.";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Raynald Monta",
+  email: mail,
+  url: "https://raynald-art.com/about",
+  image: `https://raynald-art.com${imgSrc}`,
+  worksFor: {
+    "@type": "Organization",
+    name: "Raynald Art"
+  }
+};
 ---
 
-<Base title={title} description="À propos de Raynald — illustrateur & concept-artist.">
+<Base
+  title={title}
+  description={description}
+  image={imgSrc}
+  structuredData={structuredData}
+>
   <Header />
   <main class="about">
     <section class="wrapper">

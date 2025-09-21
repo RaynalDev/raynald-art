@@ -4,19 +4,25 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Gallery from "../../components/Gallery.astro";
 
+const description =
+  "Portraits numériques par Raynald Monta : visages expressifs, lumières contrastées et palettes vibrantes.";
+
 // Liste des images de portraits (mets-les dans /public/images/portraits/)
 const images = [
-  { src: "/images/Portraits/Black.png", alt: "Black / description 01" },
-  { src: "/images/Portraits/Red.png", alt: "Titre / description 04" },
-  { src: "/images/Portraits/thugLife.png", alt: "Titre / description 05" },
-  { src: "/images/Portraits/morgane.jpg", alt : ""},
-  { src: "/images/Portraits/raynald-jov5.jpg", alt : ""},
-  { src: "/images/Portraits/ready.png", alt : ""},
-  { src: "/images/Portraits/Show-me-how.jpg", alt : ""},
-  { src: "/images/Portraits/Black.png", alt: "Black / description 01" },
+  { src: "/images/Portraits/Black.png", alt: "Portrait numérique Black, visage en clair-obscur." },
+  { src: "/images/Portraits/Red.png", alt: "Portrait Red baigné d’une lumière rouge intense." },
+  { src: "/images/Portraits/thugLife.png", alt: "Portrait stylisé Thug Life avec attitude affirmée." },
+  { src: "/images/Portraits/morgane.jpg", alt: "Portrait peinture de Morgane au regard doux." },
+  { src: "/images/Portraits/raynald-jov5.jpg", alt: "Portrait aux couleurs vives avec touches fluorescentes." },
+  { src: "/images/Portraits/ready.png", alt: "Portrait Ready montrant un personnage casqué prêt au combat." },
+  { src: "/images/Portraits/Show-me-how.jpg", alt: "Portrait Show Me How avec lumière dramatique." },
 ];
 ---
-<Base title="Portraits | Raynald">
+<Base
+  title="Portraits | Raynald"
+  description={description}
+  image="/images/Portraits/Black.png"
+>
   <Header />
   <main>
     <!-- <h2 style="max-width:1200px;margin:1rem auto;padding:0 1rem;">Portraits</h2> -->

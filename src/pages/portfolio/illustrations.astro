@@ -4,27 +4,34 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Gallery from "../../components/Gallery.astro";
 
+const description =
+  "Illustrations de Raynald Monta : compositions narratives, scènes fantastiques et recherches colorées en digital painting.";
+
 // Liste tes visuels (mets-les dans /public/images/illustrations/)
 const images = [
-  { src: "/images/illustrations/Free.png", alt: "Free" },
-  { src: "/images/illustrations/Tuto_monthly_challenge.png", alt: "White souls day" },
-  { src: "/images/illustrations/beware-the-whale.jpg", alt:""},
-  { src: "/images/illustrations/BewareTheWale.jpg", alt:""},
-  { src: "/images/illustrations/Cinderella-car.png", alt:""},
-  { src: "/images/illustrations/cinderella-swing.jpg", alt:""},
-  { src: "/images/illustrations/Innoncence.jpg", alt:""},
-  { src: "/images/illustrations/corny.jpg", alt:""},
-  { src: "/images/illustrations/darkAngels.jpg", alt:""},
-  { src: "/images/illustrations/Flyaway.jpg", alt:""},
-  { src: "/images/illustrations/oneLost.png", alt: "Une de perdue..." },
-  { src: "/images/illustrations/Harpies.jpg", alt:""},
-  { src: "/images/illustrations/Looking-for-ourselves.jpg", alt:""},
-  { src: "/images/illustrations/Moment.jpg", alt:""},
-  
+  { src: "/images/illustrations/Free.png", alt: "Illustration \"Free\" représentant une jeune femme en apesanteur." },
+  { src: "/images/illustrations/Tuto_monthly_challenge.png", alt: "Illustration White Souls Day avec un esprit lumineux dans une forêt." },
+  { src: "/images/illustrations/beware-the-whale.jpg", alt: "Scène fantastique d’un navire confronté à une baleine géante." },
+  { src: "/images/illustrations/BewareTheWale.jpg", alt: "Variation aquarelle du concept Beware the Whale." },
+  { src: "/images/illustrations/Cinderella-car.png", alt: "Réinterprétation moderne de Cendrillon quittant un bal en voiture." },
+  { src: "/images/illustrations/cinderella-swing.jpg", alt: "Illustration de Cendrillon sur une balançoire au cœur de la nuit." },
+  { src: "/images/illustrations/Innoncence.jpg", alt: "Portrait doux intitulé Innocence baigné d’une lumière rose." },
+  { src: "/images/illustrations/corny.jpg", alt: "Personnage stylisé tenant une plante lumineuse." },
+  { src: "/images/illustrations/darkAngels.jpg", alt: "Illustration Dark Angels montrant un duo d’anges en clair-obscur." },
+  { src: "/images/illustrations/Flyaway.jpg", alt: "Illustration Fly Away d’un enfant s’envolant dans le ciel." },
+  { src: "/images/illustrations/oneLost.png", alt: "Illustration Une de perdue mettant en scène deux silhouettes face à la mer." },
+  { src: "/images/illustrations/Harpies.jpg", alt: "Composition de harpies aux ailes déployées." },
+  { src: "/images/illustrations/Looking-for-ourselves.jpg", alt: "Illustration Looking for Ourselves avec deux personnages face à leur reflet." },
+  { src: "/images/illustrations/Moment.jpg", alt: "Scène intimiste au coucher du soleil intitulée Moment." },
+
 ];
 
 ---
-<Base title="Illustrations | Raynald">
+<Base
+  title="Illustrations | Raynald"
+  description={description}
+  image="/images/illustrations/Free.png"
+>
   <Header />
   <main>
     <Gallery images={images} />

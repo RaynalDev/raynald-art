@@ -4,26 +4,33 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Gallery from "../../components/Gallery.astro";
 
+const description =
+  "Character design par Raynald Monta : recherches de silhouettes, variations de costumes et études de pose.";
+
 // Liste des character design
 const images = [
-  { src: "/images/charaDesign/Tana smoke.png", alt:"Tana"},
-  { src: "/images/charaDesign/witch.jpg", alt:"Witch"},
-  { src: "/images/charaDesign/Cinderella-car.png", alt:""},
-  { src: "/images/charaDesign/cinderella-swing.jpg", alt:""},
-  { src: "/images/charaDesign/Drapery.jpg", alt:""},
-  { src: "/images/charaDesign/HarleyQuinn.jpg", alt:"Harley Quinn Variations"},
-  { src: "/images/charaDesign/Manuela.jpg", alt:"Manuela"},
-  { src: "/images/charaDesign/onepiece.jpg", alt:""},
-  { src: "/images/charaDesign/Fighter.jpg", alt:"figther variation"},
-  { src: "/images/charaDesign/raynald-pochette1080.jpg", alt:""},
-  { src: "/images/charaDesign/Samus.jpg", alt:""},
-  { src: "/images/charaDesign/SamusAran.jpg", alt:""},
-  { src: "/images/charaDesign/Scientist.jpg", alt:""},
-  { src: "/images/charaDesign/Scientist2.jpg", alt:""},
-  { src: "/images/charaDesign/ScientistThumbnails.jpg", alt:""},
+  { src: "/images/charaDesign/Tana smoke.png", alt: "Recherche de personnage Tana entourée de fumée bleutée." },
+  { src: "/images/charaDesign/witch.jpg", alt: "Concept art d’une sorcière moderne." },
+  { src: "/images/charaDesign/Cinderella-car.png", alt: "Character design de Cendrillon montée dans une voiture stylisée." },
+  { src: "/images/charaDesign/cinderella-swing.jpg", alt: "Cendrillon sur une balançoire lumineuse." },
+  { src: "/images/charaDesign/Drapery.jpg", alt: "Étude de drapés et de poses dynamiques." },
+  { src: "/images/charaDesign/HarleyQuinn.jpg", alt: "Variations de costume pour Harley Quinn." },
+  { src: "/images/charaDesign/Manuela.jpg", alt: "Concept art du personnage Manuela." },
+  { src: "/images/charaDesign/onepiece.jpg", alt: "Fanart inspiré d’One Piece." },
+  { src: "/images/charaDesign/Fighter.jpg", alt: "Variations de combattante futuriste." },
+  { src: "/images/charaDesign/raynald-pochette1080.jpg", alt: "Illustration de pochette mettant en scène un personnage musical." },
+  { src: "/images/charaDesign/Samus.jpg", alt: "Esquisses de Samus en armure." },
+  { src: "/images/charaDesign/SamusAran.jpg", alt: "Illustration détaillée de Samus Aran." },
+  { src: "/images/charaDesign/Scientist.jpg", alt: "Recherche de personnage scientifique en laboratoire." },
+  { src: "/images/charaDesign/Scientist2.jpg", alt: "Variations supplémentaires autour du scientifique." },
+  { src: "/images/charaDesign/ScientistThumbnails.jpg", alt: "Thumbnails et silhouettes de scientifique." },
 ];
 ---
-<Base title="Character Design | Raynald">
+<Base
+  title="Character Design | Raynald"
+  description={description}
+  image="/images/charaDesign/Tana smoke.png"
+>
   <Header />
   <main>
     <!-- <h2 style="max-width:1200px;margin:1rem auto;padding:0 1rem;">Character Design</h2> -->

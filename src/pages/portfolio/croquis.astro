@@ -4,17 +4,23 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import Gallery from "../../components/Gallery.astro";
 
+const description =
+  "Croquis et études traditionnels par Raynald Monta : poses rapides, recherches de personnages et observations.";
+
 // Liste des croquis (mets-les dans /public/images/croquis/)
 const images = [
-
-  { src: "/images/croquis/raynald-upper.jpg", alt: ""},
-    { src: "/images/croquis/30min-study.jpg", alt: ""},
-  { src: "/images/croquis/lianne.jpg", alt: ""},
-  { src: "/images/croquis/onepieceback.jpg", alt: ""},
-  { src: "/images/croquis/raynald-orange-wedge.jpg", alt: ""},
+  { src: "/images/croquis/raynald-upper.jpg", alt: "Croquis numérique d’un personnage en buste." },
+  { src: "/images/croquis/30min-study.jpg", alt: "Étude de nu en 30 minutes." },
+  { src: "/images/croquis/lianne.jpg", alt: "Croquis portrait de Lianne." },
+  { src: "/images/croquis/onepieceback.jpg", alt: "Croquis inspiré d’One Piece vu de dos." },
+  { src: "/images/croquis/raynald-orange-wedge.jpg", alt: "Étude de lumière sur un portrait orange." },
 ];
 ---
-<Base title="Croquis | Raynald">
+<Base
+  title="Croquis | Raynald"
+  description={description}
+  image="/images/croquis/raynald-upper.jpg"
+>
   <Header />
   <main>
     <!-- <h2 style="max-width:1200px;margin:1rem auto;padding:0 1rem;">Croquis</h2> -->

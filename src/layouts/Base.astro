@@ -1,9 +1,25 @@
 ---
-import "../styles/global.css"; 
+import "../styles/global.css";
+
 const {
   title = "Raynald | Illustration & Concept Art",
   description = "Portfolio d’illustration et de concept art par Raynald.",
+  image = "/hero_row.png",
+  canonical,
+  locale = "fr_FR",
+  structuredData = undefined,
+  noindex = false,
 } = Astro.props;
+
+const site = Astro.site ?? new URL("https://raynald-art.com");
+const currentURL = Astro.url ? new URL(Astro.url.pathname + Astro.url.search, site) : site;
+const canonicalURL = canonical ? new URL(canonical, site) : currentURL;
+const ogImage = image ? new URL(image, site).href : undefined;
+const robots = noindex ? "noindex, nofollow" : "index, follow";
+const twitterCard = ogImage ? "summary_large_image" : "summary";
+const structuredDataJSON = structuredData
+  ? JSON.stringify(structuredData).replace(/</g, "\\u003c")
+  : undefined;
 ---
 <html lang="fr">
   <head>
@@ -11,19 +27,35 @@ const {
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <!-- CSS global -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
-    <!-- Open Graph (SEO) -->
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonicalURL.href} />
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="Raynald Art" />
+    {ogImage && (
+      <>
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="Illustration de Raynald" />
+      </>
+    )}
+    <!-- Twitter -->
+    <meta name="twitter:card" content={twitterCard} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" />
 
+    {structuredDataJSON && (
+      <script type="application/ld+json" set:html={structuredDataJSON} />
+    )}
   </head>
   <body>
     <slot />

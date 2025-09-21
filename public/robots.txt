@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raynald-art.com/sitemap-index.xml
