@@ -26,7 +26,49 @@
 
       <!-- <li class="nav-item"><a href="/mentorat">Mentorat</a></li> -->
       <li class="nav-item"><a href="/about">À&nbsp;propos</a></li>
-      <li class="nav-item"><a href="mailto:contact@raynald-art.com">Contact</a></li>
+      <li class="nav-item social-item">
+        <a
+          class="social-link"
+          href="https://www.instagram.com/_until_we_fall_/"
+          aria-label="Voir le compte Instagram _until_we_fall_"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path
+              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5Zm4.25 3.25a5.5 5.5 0 1 1-5.5 5.5 5.5 5.5 0 0 1 5.5-5.5Zm0 1.5a4 4 0 1 0 4 4 4 4 0 0 0-4-4Zm5.75-.88a1.12 1.12 0 1 1-1.12 1.12 1.12 1.12 0 0 1 1.12-1.12Z"
+            />
+          </svg>
+        </a>
+      </li>
+      <li class="nav-item social-item">
+        <a
+          class="social-link"
+          href="https://www.artstation.com/raynald_art"
+          aria-label="Voir le portfolio ArtStation de Raynald"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path
+              d="M19.11 19.758H8.81l1.79-3.28h7.61l-5.62-9.96-6.19 10.97H3.16c-1.1 0-1.78-1.18-1.23-2.14L8.14 3.1c.55-.97 1.94-.97 2.49 0l8.77 15.53c.55.97-.14 2.13-1.29 2.13Z"
+            />
+          </svg>
+        </a>
+      </li>
+      <li class="nav-item social-item">
+        <a
+          class="social-link"
+          href="mailto:contact@raynald-art.com"
+          aria-label="Envoyer un e-mail à Raynald"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
+            <path
+              d="M3.5 6.5A2.5 2.5 0 0 1 6 4h12a2.5 2.5 0 0 1 2.5 2.5v11A2.5 2.5 0 0 1 18 20H6a2.5 2.5 0 0 1-2.5-2.5v-11Zm2.1-.5 6.4 5 6.4-5H5.6Zm13.4 2.2-5.9 4.6a1 1 0 0 1-1.2 0L6 8.2v9.3c0 .28.22.5.5.5h11c.28 0 .5-.22.5-.5V8.2Z"
+            />
+          </svg>
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -39,5 +81,25 @@
   }
   .brand-link:hover {
     text-decoration: none;
+  }
+  .social-item {
+    display: flex;
+    align-items: center;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: inherit;
+  }
+  .social-link:hover .icon {
+    opacity: 0.6;
+  }
+  .icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    fill: currentColor;
   }
 </style>
