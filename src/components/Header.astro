@@ -34,11 +34,14 @@
           rel="noopener noreferrer"
           target="_blank"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <path
-              d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5Zm4.25 3.25a5.5 5.5 0 1 1-5.5 5.5 5.5 5.5 0 0 1 5.5-5.5Zm0 1.5a4 4 0 1 0 4 4 4 4 0 0 0-4-4Zm5.75-.88a1.12 1.12 0 1 1-1.12 1.12 1.12 1.12 0 0 1 1.12-1.12Z"
-            />
-          </svg>
+          <img
+            class="icon"
+            src="/images/logo/instagram_logo.png"
+            alt="Instagram"
+            loading="lazy"
+            width="24"
+            height="24"
+          />
         </a>
       </li>
       <li class="nav-item social-item">
@@ -49,11 +52,14 @@
           rel="noopener noreferrer"
           target="_blank"
         >
-          <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
-            <path
-              d="M19.11 19.758H8.81l1.79-3.28h7.61l-5.62-9.96-6.19 10.97H3.16c-1.1 0-1.78-1.18-1.23-2.14L8.14 3.1c.55-.97 1.94-.97 2.49 0l8.77 15.53c.55.97-.14 2.13-1.29 2.13Z"
-            />
-          </svg>
+          <img
+            class="icon"
+            src="/images/logo/arstation_logo.png"
+            alt="ArtStation"
+            loading="lazy"
+            width="24"
+            height="24"
+          />
         </a>
       </li>
       <li class="nav-item social-item">
@@ -100,6 +106,12 @@
   .icon {
     width: 1.4rem;
     height: 1.4rem;
+    display: block;
+  }
+  svg.icon {
     fill: currentColor;
+  }
+  img.icon {
+    object-fit: contain;
   }
 </style>
