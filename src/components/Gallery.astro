@@ -7,10 +7,7 @@ interface Img {
 }
 
 import "../styles/gallery.css";
-import lightboxScript from "../scripts/gallery-lightbox.ts?url";
-
-// FIXME : this path is not understandable by netlify when build and deploy
-// import lightboxUrl from "../scripts/gallery-lightbox.ts?url"; 
+import lightboxScript from "../scripts/gallery-lightbox.js?url";
 
 const { images = [] as Img[] } = Astro.props;
 ---
@@ -49,7 +46,4 @@ const { images = [] as Img[] } = Astro.props;
   <button class="next" aria-label="Illustration suivante">›</button>
 </dialog>
 
-<!-- <script type="module" src={lightboxUrl}></script> -->
 <script type="module" src={lightboxScript}></script>
-
-
