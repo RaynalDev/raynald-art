@@ -1,14 +1,12 @@
-export {};
-
-const isDialogSupported = (dialog: HTMLDialogElement) =>
+const isDialogSupported = (dialog) =>
   typeof dialog.showModal === "function";
 
-function lockScroll(lock: boolean) {
+function lockScroll(lock) {
   document.documentElement.style.overflow = lock ? "hidden" : "";
 }
 
-function initReveal(thumbs: HTMLButtonElement[]) {
-  const markVisible = (el: Element) => el.classList.add("in");
+function initReveal(thumbs) {
+  const markVisible = (el) => el.classList.add("in");
 
   const revealInitial = () => {
     const viewportHeight = window.innerHeight;
@@ -42,24 +40,24 @@ function initReveal(thumbs: HTMLButtonElement[]) {
   window.addEventListener("orientationchange", revealInitial, { passive: true });
 }
 
-function initLightbox(thumbs: HTMLButtonElement[], dialog: HTMLDialogElement) {
+function initLightbox(thumbs, dialog) {
   if (!thumbs.length || !dialog) return;
 
-  const lbImg = dialog.querySelector<HTMLImageElement>("#lb-img");
-  const lbCap = dialog.querySelector<HTMLElement>("#lb-cap");
-  const btnPrev = dialog.querySelector<HTMLButtonElement>(".prev");
-  const btnNext = dialog.querySelector<HTMLButtonElement>(".next");
-  const btnClose = dialog.querySelector<HTMLButtonElement>(".close");
+  const lbImg = dialog.querySelector("#lb-img");
+  const lbCap = dialog.querySelector("#lb-cap");
+  const btnPrev = dialog.querySelector(".prev");
+  const btnNext = dialog.querySelector(".next");
+  const btnClose = dialog.querySelector(".close");
 
   if (!lbImg || !lbCap || !btnPrev || !btnNext || !btnClose) return;
 
   const images = thumbs
-    .map((thumb) => thumb.querySelector<HTMLImageElement>("img"))
-    .filter((img): img is HTMLImageElement => Boolean(img));
+    .map((thumb) => thumb.querySelector("img"))
+    .filter(Boolean);
 
   let index = 0;
 
-  const show = (idx: number) => {
+  const show = (idx) => {
     index = (idx + images.length) % images.length;
     const image = images[index];
     if (!image) return;
@@ -68,7 +66,7 @@ function initLightbox(thumbs: HTMLButtonElement[], dialog: HTMLDialogElement) {
     lbCap.textContent = image.alt;
   };
 
-  const open = (idx: number) => {
+  const open = (idx) => {
     show(idx);
     if (isDialogSupported(dialog)) {
       dialog.showModal();
@@ -112,7 +110,7 @@ function initLightbox(thumbs: HTMLButtonElement[], dialog: HTMLDialogElement) {
   });
 
   dialog.addEventListener("click", (event) => {
-    const stage = dialog.querySelector<HTMLElement>(".stage");
+    const stage = dialog.querySelector(".stage");
     if (!stage) return;
     const rect = stage.getBoundingClientRect();
     const inside =
@@ -145,10 +143,8 @@ function initLightbox(thumbs: HTMLButtonElement[], dialog: HTMLDialogElement) {
 }
 
 if (typeof window !== "undefined") {
-  const thumbs = Array.from(
-    document.querySelectorAll<HTMLButtonElement>(".gallery .thumb")
-  );
-  const dialog = document.querySelector<HTMLDialogElement>("#lightbox");
+  const thumbs = Array.from(document.querySelectorAll(".gallery .thumb"));
+  const dialog = document.querySelector("#lightbox");
 
   if (thumbs.length) {
     initReveal(thumbs);
